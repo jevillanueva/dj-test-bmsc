@@ -1,0 +1,12 @@
+version: '3'
+volumes:
+  db:
+services:
+  web:
+    build:
+      context: countries
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./countries/db.sqlite3:/countries/db.sqlite3

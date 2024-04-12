@@ -1,0 +1,54 @@
+{%extends 'base.html' %}
+{%block title%}Detalle{% endblock %}
+
+{% block menu %}
+<section class="hero is-success is-small">
+    <div class="hero-body">
+        <p class="title">Detail</p>
+        <a class="button" href="{% url 'country:country_index' %}">🔙 Back</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="box">
+
+            <h1 class="title">Detail</h1>
+            <div class="block">
+                Código: {{country.codigo}}
+            </div>
+            <div class="block">
+                {{country.descripcion}}
+            </div>
+            <div class="block">
+                {%if country.is_active %}Activo{%else%}Inactivo{%endif%}
+            </div>
+
+            <div class="buttons">
+                <a class="button is-info" href="{% url 'country:country_edit' country.id %}">📝 Edit</a>
+                <button class="button is-danger" id="delete">❌ Delete</button>
+            </div>
+
+            
+            
+            <script>
+                document.getElementById('delete').addEventListener('click', function () {
+                    fetch("{% url 'country:country_delete' country.id %}", {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRFToken': '{{csrf_token}}'
+                        }
+                    }).then(function (response) {
+                        if (response.ok) {
+                            window.location.href = "{% url 'country:country_index' %}";
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</section>
+{% endblock %}

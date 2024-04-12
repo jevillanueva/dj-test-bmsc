@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{%block title%}Country{% endblock %}
+
+{% block menu %}
+<section class="hero is-primary is-small">
+    <div class="hero-body">
+        <p class="title">Country</p>
+        <a class="button" href="{% url 'country:country_new' %}">➕ New country</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+    {% for country in countries %}
+        <div class="box">
+            <a href="{% url 'country:country_detail' country.id %}"  >{{ country.descripcion }}</p>
+
+        </div>
+    {% endfor %}
+    </div>
+</section>
+{% endblock %}

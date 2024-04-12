@@ -1,0 +1,41 @@
+{%extends 'base.html' %}
+{%block title%}New Country{% endblock %}
+
+{% block menu %}
+<section class="hero is-primary is-small">
+    <div class="hero-body">
+        <p class="title">New Country</p>
+        <a class="button" href="{% url 'country:country_index' %}">🔙 Back</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+
+        <div class="box">
+
+            <form method="post" action="">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="field">
+                    <input class="input is-primary" type="number" name="codigo" id="codigo" value="{{country.codigo}}"
+                    placeholder="Código">
+
+                </div>
+                <div class="field">
+                    <input class="input is-primary" type="text" name="descripcion" id="descripcion" value="{{country.descripcion}}"
+                        placeholder="Descripción">
+                    {{ form.descripcion.errors }}
+                </div>
+                
+                <div class="field">
+                    <button class="button is-info" type="submit">📝 Save</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
