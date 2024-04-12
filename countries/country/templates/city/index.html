@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{%block title%}city{% endblock %}
+
+{% block menu %}
+<section class="hero is-primary is-small">
+    <div class="hero-body">
+        <p class="title">Cities of {{country.descripcion}}</p>
+        <a class="button" href="{% url 'country:city_new' country.id %}">➕ New city</a>
+        <a class="button" href="{% url 'country:country_detail' country.id %}">🔙 Back</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+    {% for city in cities %}
+        <div class="box">
+            <a href="{%url 'country:city_detail' country.id city.id %}"  >{{ city.descripcion }}</p>
+
+        </div>
+    {% endfor %}
+    </div>
+</section>
+{% endblock %}
